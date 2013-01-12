@@ -2361,7 +2361,7 @@ public final class ActivityManagerService extends ActivityManagerNative
 	    	java.io.File rotateLights = new File("/system/etc/rotate_lights.sh");
 	    	if ( rotateLights.exists() ) {
 			try {
-    				Runtime.getRuntime().exec(String.format("/system/etc/rotate_lights.sh %d", newConfig.orientation - 1));
+    				Runtime.getRuntime().exec(String.format("/system/etc/rotate_lights.sh %d", config.orientation - 1));
 			} catch (IOException e) {
     				Slog.e("TAG", "Failed to execute rotate_lights.sh", e);
 			}
