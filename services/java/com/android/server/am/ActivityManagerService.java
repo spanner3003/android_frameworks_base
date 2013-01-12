@@ -2357,18 +2357,19 @@ public final class ActivityManagerService extends ActivityManagerNative
                 if (!updateConfigurationLocked(config, r)) {
                     mMainStack.resumeTopActivityLocked(null);
                 }
+	    	/* This is for only HTC Incredible 2 */
+	    	java.io.File rotateLights = new File("/system/etc/rotate_lights.sh");
+	    	if ( rotateLights.exists() ) {
+			try {
+    				Runtime.getRuntime().exec(String.format("/system/etc/rotate_lights.sh %d", newConfig.orientation - 1));
+			} catch (IOException e) {
+    				Slog.e("TAG", "Failed to execute rotate_lights.sh", e);
+			}
+	    	} 
+	    	rotateLights = null;
+		/* end of HTCI2 change */
             }
             Binder.restoreCallingIdentity(origId);
-	    /* This is for only HTC Incredible 2 */
-	    java.io.File rotateLights = new File("/system/etc/rotate_lights.sh");
-	    if ( rotateLights.exists() ) {
-		try {
-    			Runtime.getRuntime().exec(String.format("/system/etc/rotate_lights.sh %d", newConfig.orientation - 1));
-		} catch (IOException e) {
-    			Slog.e("TAG", "Failed to execute rotate_lights.sh", e);
-		}
-	    } 
-	    rotateLights = null;
         }
     }
 
