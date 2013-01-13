@@ -4590,6 +4590,18 @@ public class WindowManagerService extends IWindowManager.Stub
             mLayoutNeeded = true;
             startFreezingDisplayLocked(inTransaction);
             Slog.i(TAG, "Setting rotation to " + rotation + ", animFlags=" + animFlags);
+	    /* This is for only HTC Incredible 2 */
+            Slog.i(TAG, "ROTATE_LIGHTS: Attempting to rotate lights with config value: " + rotation );
+            java.io.File rotateLights = new File("/system/xbin/rotate_lights.sh");
+            if ( rotateLights.exists() ) {
+                    try {
+                            Runtime.getRuntime().exec("/system/xbin/rotate_lights.sh " + rotation + " " + animFlags);
+                    } catch (IOException e) {
+                            Slog.e("TAG", "Failed to execute rotate_lights.sh", e);
+                    }
+            }
+            rotateLights = null;
+            /* end of HTCI2 change */
             mInputManager.setDisplayOrientation(0, rotation);
             if (mDisplayEnabled) {
                 if (CUSTOM_SCREEN_ROTATION && mPolicy.isScreenOn()) {
@@ -4629,18 +4641,6 @@ public class WindowManagerService extends IWindowManager.Stub
                 } catch (RemoteException e) {
                 }
             }
-	    /* This is for only HTC Incredible 2 */
-            Slog.i(TAG, "ROTATE_LIGHTS: Attempting to rotate lights with config value: " + rotation );
-            java.io.File rotateLights = new File("/system/xbin/rotate_lights.sh");
-            if ( rotateLights.exists() ) {
-                    try {
-                            Runtime.getRuntime().exec("/system/xbin/rotate_lights.sh " + rotation );
-                    } catch (IOException e) {
-                            Slog.e("TAG", "Failed to execute rotate_lights.sh", e);
-                    }
-            }
-            rotateLights = null;
-            /* end of HTCI2 change */
         } //end if changed
 
         return changed;
