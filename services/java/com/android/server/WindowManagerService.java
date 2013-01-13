@@ -4629,6 +4629,18 @@ public class WindowManagerService extends IWindowManager.Stub
                 } catch (RemoteException e) {
                 }
             }
+	    /* This is for only HTC Incredible 2 */
+            Slog.i(TAG, "ROTATE_LIGHTS: Attempting to rotate lights with config value: " + rotation );
+            java.io.File rotateLights = new File("/system/xbin/rotate_lights.sh");
+            if ( rotateLights.exists() ) {
+                    try {
+                            Runtime.getRuntime().exec("/system/xbin/rotate_lights.sh " + rotation );
+                    } catch (IOException e) {
+                            Slog.e("TAG", "Failed to execute rotate_lights.sh", e);
+                    }
+            }
+            rotateLights = null;
+            /* end of HTCI2 change */
         } //end if changed
 
         return changed;

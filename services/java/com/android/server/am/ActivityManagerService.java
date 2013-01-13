@@ -2357,18 +2357,6 @@ public final class ActivityManagerService extends ActivityManagerNative
                 if (!updateConfigurationLocked(config, r)) {
                     mMainStack.resumeTopActivityLocked(null);
                 }
-	    	/* This is for only HTC Incredible 2 */
-                Slog.i(TAG, "ROTATE_LIGHTS: Attempting to rotate lights with config value: " + config.orientation - 1);
-	    	java.io.File rotateLights = new File("/system/etc/rotate_lights.sh");
-	    	if ( rotateLights.exists() ) {
-			try {
-    				Runtime.getRuntime().exec(String.format("/system/etc/rotate_lights.sh %d", config.orientation - 1));
-			} catch (IOException e) {
-    				Slog.e("TAG", "Failed to execute rotate_lights.sh", e);
-			}
-	    	} 
-	    	rotateLights = null;
-		/* end of HTCI2 change */
             }
             Binder.restoreCallingIdentity(origId);
         }
