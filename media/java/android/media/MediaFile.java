@@ -66,31 +66,34 @@ public class MediaFile {
     public static final int FILE_TYPE_3GPP2   = 24;
     public static final int FILE_TYPE_WMV     = 25;
     public static final int FILE_TYPE_ASF     = 26;
-
     public static final int FILE_TYPE_MKV     = 27;
     public static final int FILE_TYPE_MP2TS   = 28;
-    private static final int FIRST_VIDEO_FILE_TYPE = FILE_TYPE_MP4;
-
     public static final int FILE_TYPE_AVI     = 29;
-    private static final int LAST_VIDEO_FILE_TYPE = FILE_TYPE_AVI;
+    public static final int FILE_TYPE_FLV     = 30;
+    public static final int FILE_TYPE_F4V     = 31;
+    public static final int FILE_TYPE_F4P     = 32;
+    public static final int FILE_TYPE_F4A     = 33;
+    public static final int FILE_TYPE_F4B     = 34;
+    private static final int FIRST_VIDEO_FILE_TYPE = FILE_TYPE_MP4;
+    private static final int LAST_VIDEO_FILE_TYPE = FILE_TYPE_F4B;
 
     // Image file types
-    public static final int FILE_TYPE_JPEG    = 31;
-    public static final int FILE_TYPE_GIF     = 32;
-    public static final int FILE_TYPE_PNG     = 33;
-    public static final int FILE_TYPE_BMP     = 34;
-    public static final int FILE_TYPE_WBMP    = 35;
-    public static final int FILE_TYPE_JPS    = 36;
-    public static final int FILE_TYPE_MPO    = 37;
+    public static final int FILE_TYPE_JPEG    = 41;
+    public static final int FILE_TYPE_GIF     = 42;
+    public static final int FILE_TYPE_PNG     = 43;
+    public static final int FILE_TYPE_BMP     = 44;
+    public static final int FILE_TYPE_WBMP    = 45;
+    public static final int FILE_TYPE_JPS    = 46;
+    public static final int FILE_TYPE_MPO    = 47;
 
     private static final int FIRST_IMAGE_FILE_TYPE = FILE_TYPE_JPEG;
     private static final int LAST_IMAGE_FILE_TYPE = FILE_TYPE_WBMP;
     private static final int LAST_IMAGE_FILE_TYPE_S3D = FILE_TYPE_MPO;
 
     // Playlist file types
-    public static final int FILE_TYPE_M3U     = 41;
-    public static final int FILE_TYPE_PLS     = 42;
-    public static final int FILE_TYPE_WPL     = 43;
+    public static final int FILE_TYPE_M3U     = 51;
+    public static final int FILE_TYPE_PLS     = 52;
+    public static final int FILE_TYPE_WPL     = 53;
     private static final int FIRST_PLAYLIST_FILE_TYPE = FILE_TYPE_M3U;
     private static final int LAST_PLAYLIST_FILE_TYPE = FILE_TYPE_WPL;
 
@@ -192,6 +195,12 @@ public class MediaFile {
         addFileType("M3U", FILE_TYPE_M3U, "audio/x-mpegurl");
         addFileType("PLS", FILE_TYPE_PLS, "audio/x-scpls");
         addFileType("WPL", FILE_TYPE_WPL, "application/vnd.ms-wpl");
+
+	addFileType("FLV", FILE_TYPE_FLV, "video/x-flv");
+	addFileType("F4V", FILE_TYPE_F4V, "video/mp4");
+	addFileType("F4P", FILE_TYPE_F4P, "video/mp4");
+	addFileType("F4A", FILE_TYPE_F4A, "video/mp4");
+	addFileType("F4B", FILE_TYPE_F4B, "video/mp4");
 
         // compute file extensions list for native Media Scanner
         StringBuilder builder = new StringBuilder();
